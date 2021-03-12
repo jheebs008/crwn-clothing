@@ -3,10 +3,10 @@ import Directory from '../../components/directory/directory.js';
 
 import './homepage.scss';
 
-const Homepage = () => (
+const HomePage = () => (
     <div className="homepage">
         <Directory />    
     </div>
 );
 
-export default Homepage;
+export default HomePage;
