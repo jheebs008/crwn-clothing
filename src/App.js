@@ -11,17 +11,19 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from './pages/checkout/checkout';
 
 import Header from './components/header/header';
-
+// addCollectionAndDocuments needed to pass collection data into firebase
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+//import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 class App extends React.Component {
   
   unsubscribeFromAuth = null
 
   //This will mount every time user state is changed, i.e user signs out
+  // collectionsArray passed into com..DidMount to pass data into database without typing each one out
   componentDidMount() {
     const {setCurrentUser} = this.props;
 
@@ -37,9 +39,11 @@ class App extends React.Component {
         });
       }
 
-      else {
+      //addCollec...Documents to allow for new collection item to be added into firebase database
+      //else{}???      
         setCurrentUser(userAuth);
-      }
+        //addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({ title, items })));
+      
     });
   }
 
@@ -73,7 +77,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  //collectionsArray: selectCollectionsForPreview
 });
 
 const mapDispatchToProps = dispatch => ({
